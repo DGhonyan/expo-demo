@@ -1,19 +1,49 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
-// https://vite.dev/config/
+const base = "/content_team-content-delivery/";
+const pages = ["index"];
+
+const fallbackPlugin = () => ({
+    name: "fallback-plugin",
+    apply: "serve",
+    configureServer: (server) => {
+        for (const page of pages) {
+            server.middlewares.use(base + page, (req, res, next) => {
+                if (!req.url?.endsWith(".html")) req.url += ".html";
+                next();
+            });
+        }
+    }
+});
+
+const getInput = () => {
+    const input = {};
+
+    for (const page of pages) {
+        input[page] = fileURLToPath(new URL(`./${page}.html`, import.meta.url));
+    }
+
+    return input;
+};
+
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+    plugins: [vue(), fallbackPlugin()],
+    resolve: {
+        alias: {
+            "@": fileURLToPath(new URL("./src", import.meta.url))
+        }
     },
-  },
-  base: '/expo-demo/',
-})
+    base,
+    build: {
+        rollupOptions: {
+            input: getInput()
+        },
+    },
+	server: {
+		port: 3006,
+	},
+});
