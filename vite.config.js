@@ -42,7 +42,6 @@ export default defineConfig({
         rollupOptions: {
             input: getInput()
         },
-        assetsInclude: ['**/*.png', '**/*.svg']
     },
 	server: {
 		port: 3006,
