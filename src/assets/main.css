@@ -1,0 +1,17 @@
+@import './base.css';
+
+#app {
+  max-width: 100%;
+  margin: 0 auto;
+  font-weight: normal;
+
+  background-color: #F4F4F6;
+}
+
+.padding {
+	padding: 40px 40px 0;
+}
+
+.contact__info__address__icon path {
+	stroke: #fff;
+}
