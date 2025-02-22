@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-const base = "/content_team-content-delivery/";
+const base = "/expo-demo/";
 const pages = ["index"];
 
 const fallbackPlugin = () => ({
