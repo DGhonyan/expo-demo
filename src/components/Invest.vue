@@ -91,7 +91,7 @@ import calendar from '@/assets/icons/calendar.svg?raw'
 
 .invest__image-container {
 	width: 100%;
-	max-height: 500px;
+	max-height: 600px;
 	overflow: hidden;
 }
 
