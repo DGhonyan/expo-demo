@@ -43,7 +43,4 @@ export default defineConfig({
             input: getInput()
         },
     },
-	server: {
-		port: 3006,
-	},
 });

@@ -49,7 +49,7 @@ import calendar from '@/assets/icons/calendar.svg?raw'
 
 .invest__title {
 	min-width: 270px;
-	font-size: 38px;
+	font-size: 32px;
 	font-weight: bold;
 	color: #000929;
 }

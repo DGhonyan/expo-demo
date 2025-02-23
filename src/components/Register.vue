@@ -1,5 +1,18 @@
 <script setup>
 import { texts } from '@/Store';
+import { ref } from 'vue';
+
+const currentDateIndex = ref(0);
+const arrows = ['arrow1', 'arrow2'];
+
+const changeDate = () => {
+	currentDateIndex.value = (currentDateIndex.value + 1) % arrows.length;
+}
+
+const getArrow = () => {
+	const arrowName = arrows[currentDateIndex.value];
+	return new URL(`/src/assets/icons/${arrowName}.svg`, import.meta.url).href;
+}
 </script>
 
 <template>
@@ -24,6 +37,20 @@ import { texts } from '@/Store';
 				</div>
 				<div class="register__form__input">
 					<input type="text" :placeholder="texts.register.form.phone" />
+				</div>
+
+				<div class="register__form__date">
+					<div class="register__form__date__text_container">
+						<div class="register__form__date__text_container__icon">
+							<img src="@/assets/icons/calendar.svg" alt="calendar" class="register__form__date__text_container__icon__image">
+						</div>
+						<div class="register__form__date__text">
+							{{ texts.register.form.dates[currentDateIndex] }}
+						</div>
+					</div>
+					<div class="register__form__change_date" @click="changeDate">
+						<img :src="getArrow()" alt="arrow" class="register__form__change_date__arrow">
+					</div>
 				</div>
 
 				<div class="register__form__button">
@@ -68,12 +95,15 @@ import { texts } from '@/Store';
 .register__text {
 	font-size: 16px;
 	color: #6C727F;
+	opacity: 0.5;
 }
 
 .register__text_content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	gap: 10px;
 }
 
 .register__form {
@@ -93,7 +123,7 @@ import { texts } from '@/Store';
 	width: 100%;
 }
 
-.register__form__input input {
+.register__form__input input, .register__form__date {
 	padding: 10px 20px;
 	width: 100%;
 	border-radius: 5px;
@@ -130,5 +160,31 @@ import { texts } from '@/Store';
 .register__form__limited {
 	font-size: 12px;
 	color: #6C727F;
+}
+
+.register__form__date {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 100%;
+}
+
+.register__form__date__text_container, .register__form__date__text_container__icon {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.register__form__change_date {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.register__form__change_date__arrow {
+	width: 14px;
+	height: 14px;
 }
 </style>

@@ -30,7 +30,7 @@ import Contact from './components/Contact.vue'
 	display: flex;
 	flex-direction: column;
 
-	gap: 100px;
+	gap: 60px;
 }
 
 .container-content {

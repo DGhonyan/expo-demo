@@ -61,7 +61,8 @@
 				"email": "Email",
 				"phone": "Phone Number",
 				"limited": "Hurry, spots are limited!",
-				"button": "Register Now"
+				"button": "Register Now",
+				"dates": ["21.03.2025", "26.03.2025"]
 			}
 		},
 		"contact": {

@@ -2,9 +2,6 @@
 import { texts } from '@/Store';
 
 const getIconByName = (name) => {
-	console.log(import.meta.url);
-	console.log(name);
-
 	return new URL(`/src/assets/icons/${name}.svg`, import.meta.url).href;
 }
 </script>
